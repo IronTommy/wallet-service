@@ -1,0 +1,5 @@
+${AnsiColor.BLUE}      _                   ____          _
+${AnsiColor.BLUE}     | | __ ___   ____ _ / ___|___   __| | ___
+${AnsiColor.CYAN}  _  | |/ _` \ \ / / _` | |   / _ \ / _` |/ _ \
+${AnsiColor.CYAN} | |_| | (_| |\ V / (_| | |__| (_) | (_| |  __/
+${AnsiColor.BRIGHT_CYAN}  \___/ \__,_| \_/ \__,_|\____\___/ \__,_|\___|

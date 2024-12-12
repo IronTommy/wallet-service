@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="developer">
+        <createTable tableName="wallet">
+            <column name="wallet_id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="balance" type="DECIMAL(18,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="BIGINT" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="developer">
+        <createTable tableName="wallet_transaction">
+            <column name="transaction_id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="wallet_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="operation_type" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="DECIMAL(18,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="developer">
+        <addForeignKeyConstraint
+                baseTableName="wallet_transaction"
+                baseColumnNames="wallet_id"
+                referencedTableName="wallet"
+                referencedColumnNames="wallet_id"
+                constraintName="fk_wallet_transaction_wallet_id"/>
+    </changeSet>
+
+    <changeSet id="5" author="developer">
+        <createIndex indexName="idx_wallet_transaction_wallet_id" tableName="wallet_transaction">
+            <column name="wallet_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="6" author="developer">
+        <addUniqueConstraint tableName="wallet" columnNames="wallet_id" constraintName="uq_wallet_id"/>
+    </changeSet>
+
+</databaseChangeLog>
